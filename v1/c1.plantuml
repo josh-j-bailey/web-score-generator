@@ -1,0 +1,11 @@
+@startuml C1_Diagram
+!include <C4/C4_Container>
+
+
+Person(user, "Customer", "")
+System(website, "Web Score Manager", "system", "")
+System(score_generator, "Score Generator", "system")
+
+Rel(user, website, "Manages websites", "")
+Rel(website, score_generator, "Generates scores", "")
+@enduml

@@ -1,0 +1,19 @@
+@startuml C1_Diagram
+!include <C4/C4_Container>
+
+
+Person(user, "Customer", "")
+Container(web_ui, "UI", "")
+Container(web_api, "API", "Python")
+ContainerDb(score_db, "DB", "PostgreSQL")
+
+ContainerQueue(score_queue, "Score Queue", "Kafka")
+Container(score_job, "Score Job", "Python")
+
+Rel(user, web_ui, "Manages websites", "https")
+Rel(web_ui, web_api, "", "https")
+BiRel(web_api, score_db, "Read/Write")
+Rel_L(web_api, score_queue, "Enqueue")
+Rel(score_queue, score_job, "Score website")
+Rel(score_job, score_db, "Update score")
+@enduml
